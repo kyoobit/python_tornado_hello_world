@@ -11,16 +11,13 @@ RUN apk add python3 py3-tornado
 COPY app.py /app.py
 COPY cli.py /cli.py
 
-# No need to run as root in the container
-ARG USERNAME=appuser
-ARG USER_UID=1000
-ARG USER_GID=${USER_UID}
-
 # Add a user account
-RUN groupadd --gid ${USER_GID} ${USERNAME} \
-    && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME}
+# No need to run as root in the container
+RUN addgroup -S appgroup \
+    && adduser -S appuser -G appgroup
 
-USER ${USERNAME}
+# Run all future commands as appuser
+USER appuser
 
 # Set the command to run on start up
 ENTRYPOINT ["python3", "/cli.py"]
