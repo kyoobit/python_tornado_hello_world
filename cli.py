@@ -5,14 +5,14 @@ import sys
 
 from pathlib import Path
 
+from app import main
+
 __version__ = "0.0.1a"
 
 sys.path.append(Path(__file__).parent)
 
-from app import main
-
 DEFAULT_NAME = f"Python/TornadoWeb/HelloWorld/{__version__}"
-DESCRIPTION = f"""This is a Python Tornado Web "Hello World" HTTP service.
+DESCRIPTION = """This is a Python Tornado Web "Hello World" HTTP service.
 
 Run the program:
   python3 ./cli.py
@@ -21,8 +21,8 @@ Run the program:
 
 if __name__ == "__main__":
 
-    ## Arguments
-    ## https://docs.python.org/3/library/argparse.html
+    # Arguments
+    # https://docs.python.org/3/library/argparse.html
     parser = argparse.ArgumentParser(
         description=DESCRIPTION,
         formatter_class=argparse.RawTextHelpFormatter,
@@ -55,14 +55,14 @@ if __name__ == "__main__":
         action="store_true",
         help="Run with noisy debug messages enabled (Default: False)",
     )
-    ## Parse all arguments
+    # Parse all arguments
     argv, remaining_argv = parser.parse_known_args()
 
-    ## Pass the program __version__ in as an attribute
-    setattr(argv, "version", __version__)
+    # Pass the program __version__ in as an attribute
+    argv.version = __version__
 
-    ## Configure logging
-    ## https://docs.python.org/3/howto/logging.html
+    # Configure logging
+    # https://docs.python.org/3/howto/logging.html
     if argv.debug:
         log_level = logging.DEBUG
     elif argv.verbose:
@@ -77,14 +77,14 @@ if __name__ == "__main__":
     logging.debug(f"{__name__} - sys.argv: {sys.argv}")
     logging.debug(f"{__name__} - argv: {argv}")
 
-    ## Run the program
+    # Run the program
     try:
-        ## Pass all parsed arguments to the main function as key word arguments
+        # Pass all parsed arguments to the main function as key word arguments
         asyncio.run(main(**vars(argv)))
     except KeyboardInterrupt:
         pass
     except Exception as err:
         logging.error(f"{sys.exc_info()[0]}; {err}")
-        ## Cause the program to exit on error when running in debug mode
+        # Cause the program to exit on error when running in debug mode
         if hasattr(argv, "debug") and argv.debug:
             raise

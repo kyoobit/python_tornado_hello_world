@@ -12,15 +12,17 @@ install: requirements.txt ## Install the application requirements
 	# Install the Python requirements in the virtual environment
 	$(VENV_BIN)/python -m pip install -r requirements.txt
 
-test: ## Test the application
-	$(VENV_BIN)/python -m pytest -v tests/test_*.py
-
 format: ## (Re)Format the application files
 	$(VENV_BIN)/black *.py
+	$(VENV_BIN)/black tests/*.py
 
 lint: ## Lint the application files
 	# Use a larger max length since screens are larger these days
 	$(VENV_BIN)/flake8 --max-line-length 127 *.py
+	$(VENV_BIN)/flake8 --max-line-length 127 tests/*.py
+
+test: ## Test the application
+	$(VENV_BIN)/python -m pytest -v tests/test_*.py
 
 all: install lint test
 
