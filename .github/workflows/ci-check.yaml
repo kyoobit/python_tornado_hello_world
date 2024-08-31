@@ -1,14 +1,21 @@
 name: CI Checks
 
+## This workflow runs when any of the following occur:
+## * A push is made to the main branch
+## * A pull request is created or updated in the main branch
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
-  build:
 
+  ## This builds the application and runs CI checks
+  ## A matrix stategy is used to allow for future python versions
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
