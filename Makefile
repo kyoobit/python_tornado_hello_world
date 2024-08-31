@@ -17,18 +17,25 @@ format: ## (Re)Format the application files
 	$(VENV_BIN)/black tests/*.py
 
 lint: ## Lint the application files
-	# Use a larger max length since screens are larger these days
+	# Lint the application files
 	$(VENV_BIN)/flake8 --max-line-length 127 *.py
+	# Lint the test files
 	$(VENV_BIN)/flake8 --max-line-length 127 tests/*.py
 
 test: ## Test the application
 	$(VENV_BIN)/python -m pytest -v tests/test_*.py
 
 depcheck: ## Dependency check for known vulnarbilities
-	# Perform a scan backed by OSS Index
+	# Perform a scan of dependancies backed by the OSS Index
 	$(VENV_BIN)/jake --warn-only ddt
 
-all: install lint test depcheck
+secscan: ## Run a source code security analyzer
+	# Analyze the application files
+	$(VENV_BIN)/bandit --recursive *.py
+	# Analyze the application files
+	$(VENV_BIN)/bandit --recursive tests/*.py
+
+all: install lint test depcheck secscan
 
 # Actions that don't require target files
 .PHONY: clean

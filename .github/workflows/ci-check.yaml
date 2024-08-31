@@ -41,3 +41,6 @@ jobs:
 
       - name: Dependency check for known vulnarbilities
         run: make depcheck
+
+      - name: Run a source code security analyzer
+        run: make secscan
