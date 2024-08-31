@@ -1,1 +1,7 @@
+tornado
+pytest
+black
+flake8
+flake8-bugbear
+jake
 bandit
