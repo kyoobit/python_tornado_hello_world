@@ -38,3 +38,6 @@ jobs:
 
       - name: Test application functionality
         run: make test
+
+      - name: Dependency check for known vulnarbilities
+        run: make depcheck

@@ -24,7 +24,11 @@ lint: ## Lint the application files
 test: ## Test the application
 	$(VENV_BIN)/python -m pytest -v tests/test_*.py
 
-all: install lint test
+depcheck: ## Dependency check for known vulnarbilities
+	# Perform a scan backed by OSS Index
+	$(VENV_BIN)/jake --warn-only ddt
+
+all: install lint test depcheck
 
 # Actions that don't require target files
 .PHONY: clean
