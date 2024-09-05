@@ -4,13 +4,14 @@ SHELL := /bin/sh
 VENV = venv
 VENV_BIN = ./$(VENV)/bin
 
-install: requirements.txt ## Install the application requirements
+install: requirements-ci.txt ## Install the application requirements
 	# Use `python3` from the current environment to create a virtual environment
 	python3 -m venv $(VENV)
 	# Upgrade PIP in the virtual environment
 	$(VENV_BIN)/python -m pip install --upgrade pip
 	# Install the Python requirements in the virtual environment
-	$(VENV_BIN)/python -m pip install -r requirements.txt
+	# CI requirements-ci.txt file includes dependencies for format, lint, and test
+	$(VENV_BIN)/python -m pip install -r requirements-ci.txt
 
 format: ## (Re)Format the application files
 	$(VENV_BIN)/black *.py
