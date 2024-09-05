@@ -1,11 +1,10 @@
+# Required for application functionality
 tornado
+# Required for continuous intigration
 pytest
 black
 flake8
 flake8-bugbear
+# Required for vulnerability checks
 jake
-requests>=2.32.2 # not directly required, pinned by Snyk to avoid a vulnerability
-setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
-urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
-zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
 bandit
