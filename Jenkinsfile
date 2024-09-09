@@ -38,11 +38,13 @@ pipeline {
 	            sh 'make secscan'
             }
         }
+        /*
         stage('Build Image') {
             // https://plugins.jenkins.io/docker-workflow/
             def myImage = docker.build("tornado-hello-world:${env.BUILD_ID}")
             myImage.push()
             myImage.push('latest')
         }
+        */
     }
 }
