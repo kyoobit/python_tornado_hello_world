@@ -24,7 +24,10 @@ lint: ## Lint the application files
 	$(VENV_BIN)/flake8 --max-line-length 127 tests/*.py
 
 test: ## Test the application
-	$(VENV_BIN)/python -m pytest -v tests/test_*.py
+	# Test the application
+	$(VENV_BIN)/coverage run -m pytest -v tests/*.py
+	# Report code coverage
+	$(VENV_BIN)/coverage report -m
 
 depcheck: ## Dependency check for known vulnarbilities
 	# Perform a scan of dependancies backed by the OSS Index

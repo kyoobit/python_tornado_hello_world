@@ -3,6 +3,7 @@
 # Required for continuous intigration
 pytest
 black
+coverage
 flake8
 flake8-bugbear
 # Required for vulnerability checks
