@@ -1,6 +1,6 @@
-# podman build --tag tornado_hello_world:v1 .
-# podman run --rm --interactive --tty --name hello_world tornado_hello_world:v1 /bin/sh
-# podman run --rm --detach --tty --publish 8889:8888/tcp --name hello_world --name hello_world tornado_hello_world:v1
+# podman build --tag tornado-hello-world:v1 .
+# podman run --rm --interactive --tty --name hello-world tornado-hello-world:v1 /bin/sh
+# podman run --rm --detach --tty --publish 8889:8888/tcp --name hello-world tornado-hello-world:v1
 # Use a smaller image
 FROM docker.io/library/alpine:latest
 
