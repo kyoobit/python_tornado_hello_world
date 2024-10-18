@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tornado-hello-world
+  namespace: hello-world
+spec:
+  containers:
+    - name: tornado-hello-world
+      image: ghcr.io/kyoobit/tornado-hello-world:latest
+      args:
+        - --verbose
+      ports:
+        - containerPort: 8888
+          name: "hello-world"

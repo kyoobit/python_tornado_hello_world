@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tornado-hello-world
+    version: latest
+  name: tornado-hello-world
+  namespace: hello-world
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tornado-hello-world
+  template:
+    metadata:
+      labels:
+        app: tornado-hello-world
+    spec:
+      containers:
+        - name: tornado-hello-world
+          image: ghcr.io/kyoobit/tornado-hello-world:latest
+          args:
+            - --verbose
+          ports:
+            - containerPort: 8888
+              name: "hello-world"

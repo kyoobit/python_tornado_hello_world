@@ -1,0 +1,18 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tornado-hello-world
+  namespace: hello-world
+spec:
+  rules:
+    - host: tornado-hello-world.microk8s.lab
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: tornado-hello-world
+                port:
+                  number: 8888
