@@ -51,9 +51,8 @@ help: ## Print a list of make options available
 
 clean: ## Clean up files used locally when needed
 	# Remove the Python cache files
-	rm -rf ./__pycache__
-	rm -rf ./tests/__pycache__
-	# Remove the Python pytest files
-	rm -rf ./.pytest_cache
+	find . -name __pycache__ | xargs rm -rf
+	# Remove the Python pytest cache files
+	find . -name .pytest_cache | xargs rm -rf
 	# Remove the Python the virtual environment
 	rm -rf ./$(VENV)
