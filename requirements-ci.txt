@@ -1,6 +1,6 @@
 # Required for application functionality
 -r requirements.txt
-# Required for continuous intigration
+# Required for continuous integration
 pytest
 black
 coverage
