@@ -1,0 +1,16 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tornado-hello-world
+  namespace: hello-world
+spec:
+  entryPoints:
+  - web # :80
+  - websecure # :443
+  routes:
+  - match: Host(`tornado-hello-world.200s.lab`)
+    kind: Rule
+    services:
+    - name: tornado-hello-world
+      port: 8888
