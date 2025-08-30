@@ -24,6 +24,5 @@ WantedBy=default.target
 # https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html
 # ~/.config/containers/systemd/hello-world.container
 # systemctl --user daemon-reload
-# systemctl --user enable --now hello-world.service
 # systemctl --user start hello-world.service
 # systemctl --user status hello-world.service
