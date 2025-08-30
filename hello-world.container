@@ -1,0 +1,29 @@
+[Unit]
+Description=Hello World Container Service
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/kyoobit/tornado-hello-world:latest
+ContainerName=hello-world
+PublishPort=8889:8888
+# Ensure the container runs in foreground mode
+PodmanArgs=--log-driver=journald
+
+[Service]
+Type=notify
+NotifyAccess=all
+Restart=always
+TimeoutStartSec=900
+TimeoutStopSec=70
+
+[Install]
+WantedBy=default.target
+
+# Podman rootless Quadlet-generated systemd unit
+# https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html
+# ~/.config/containers/systemd/hello-world.container
+# systemctl --user daemon-reload
+# systemctl --user enable --now hello-world.service
+# systemctl --user start hello-world.service
+# systemctl --user status hello-world.service
