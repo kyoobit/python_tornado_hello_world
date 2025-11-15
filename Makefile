@@ -31,7 +31,8 @@ test: ## Test the application
 
 depcheck: ## Dependency check for known vulnarbilities
 	# Perform a scan of dependancies backed by the OSS Index
-	$(VENV_BIN)/jake --warn-only ddt
+	# Requires env vars: OSS_INDEX_USER OSS_INDEX_API_TOKEN
+	$(VENV_BIN)/jake --warn-only ddt -t STDIN
 
 secscan: ## Run a source code security analyzer
 	# Analyze the application files
