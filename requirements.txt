@@ -1,2 +1,2 @@
 # Required for application functionality
-tornado
+tornado>=6.5.4
