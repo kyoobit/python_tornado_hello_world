@@ -54,7 +54,7 @@ depcheck: ## Dependency check for known vulnerabilities
 	#   + _oss_index_host: str = 'https://api.guide.sonatype.com'
 	# NOTE: ossindex-python currently requires the deprecated setuptools
 	#   Use these additional uv flags as a work around: --no-project --python 3.11 --with jake
-	uv run --no-project --python 3.11 --with jake jake --warn-only ddt --input-type ENV
+	uv run --no-project --python 3.11 --with jake --with setuptools jake --warn-only ddt --input-type ENV
 
 secscan: ## Run a source code security analyzer
 	# Analyze the application files
