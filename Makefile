@@ -38,24 +38,9 @@ test: ## Test the application
 	# Use `coverage html' to generate a HTML coverage report
 
 depcheck: ## Dependency check for known vulnerabilities
-	# Perform a scan of dependencies backed by the OSS Index
-	# Requires env vars: OSS_INDEX_USER OSS_INDEX_PASSWORD to be set
-	@if [ ! -f "~/.oss-index.config" ]; then \
-		echo "username: $(OSS_INDEX_USER)" > ~/.oss-index.config; \
-		echo "password: $(OSS_INDEX_PASSWORD)" >> ~/.oss-index.config; \
-	fi
-	# NOTE: APIs should use tokens instead of username/password
-	#   Watch for an update in ossindex-python that allows the use of token
-	#   https://github.com/sonatype-nexus-community/ossindex-python/blob/main/docs/usage.rst#authenticating-to-oss-index
-	# NOTE: The legacy OSS Index endpoint is moving to: https://api.guide.sonatype.com (sunset on 2026-12-31)
-	#   Watch for an update in ossindex-python that allows the use of host
-	#   https://github.com/sonatype-nexus-community/ossindex-python/blob/main/ossindex/ossindex.py#L58C5-L58C59
-	#   - _oss_index_host: str = 'https://ossindex.sonatype.org'
-	#   + _oss_index_host: str = 'https://api.guide.sonatype.com'
-	# NOTE: ossindex-python currently requires the deprecated setuptools
-	#   Use these additional uv flags as a work around: --no-project --python 3.11 --with jake
-	uv export --no-hashes --format requirements-txt > /tmp/requirements.txt
-	uv run --no-project --python 3.11 --with jake --with setuptools jake --warn-only ddt -f /tmp/requirements.txt --input-type PIP
+	# Perform a scan of dependencies using uv
+	# https://docs.astral.sh/uv/reference/cli/#uv-audit
+	uv audit --verbose --no-cache
 
 secscan: ## Run a source code security analyzer
 	# Analyze the application files
