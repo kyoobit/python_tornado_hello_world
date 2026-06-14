@@ -1,6 +1,6 @@
 import tornado
 
-from app import make_app
+from src.app import make_app
 
 
 class TestApp(tornado.testing.AsyncHTTPTestCase):
